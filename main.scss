@@ -1,0 +1,85 @@
+
+header.header-top {
+    background: #ffffff;
+    z-index: 99;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+
+    > .main-container {
+        width: 100%;
+        max-width: 1320px;
+        flex-direction: column;
+    }
+    .header-btn-logo {
+        padding: 10px;
+    }
+}
+
+header {
+    .navbar {
+        background-color: #ffffff;
+        padding: 0;
+        width: 100%;
+        overflow: auto;
+
+        > ul {
+            margin: 4px auto;
+        }
+
+        .main-nav-tab {
+            color: #000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: keep-all;
+            line-height: 120%;
+            position: relative;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            .nav-txt {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                transition: linear .1s;
+                align-items: center;
+                position: relative;
+                padding: 0 1rem;
+                &::after {
+                    content: '';
+                    width: calc(100% + 2rem);
+                    height: 3px;
+                    margin: 2px 0 0 0;
+                    border-radius: 4px;
+                    background-color: transparent;
+                    bottom: 0;
+                }
+            }
+
+            &.active {
+                .nav-txt {
+                    color: lightseagreen;
+                    transition: linear .1s;
+                    &::after {
+                        height: 3px;
+                        background-color: lightseagreen;
+                    }
+                }
+                &::after {
+                    content: "\f054";
+                    right: 10%;
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 800;
+                    color: lightseagreen;
+                    display: none;
+                    margin-left: 4px;
+                    margin-bottom: 2px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
