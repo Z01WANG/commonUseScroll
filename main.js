@@ -66,17 +66,25 @@ $(document).ready(function () {
   
   // 活動頁導覽列active設定
   function setActiveTab(headerHeight) {
-    $(".anchor-section").each(function () {
-      let scrollPosition = $(window).scrollTop() + headerHeight; 
+    let isActiveSet = false; // 重要
+    
+    $(".sub-section-box").each(function () {
+      let scrollPosition = $(window).scrollTop() + headerHeight;
       let sectionTop = $(this).offset().top - headerHeight;
       let sectionId = $(this).attr("id");
-      if (scrollPosition > sectionTop - 100 && scrollPosition/2 < sectionTop + $(this).outerHeight()) {
+      let sectionBottom = sectionTop + $(this).outerHeight(); // 超過section就移除
+
+      if (scrollPosition >= sectionTop - 80 && scrollPosition < sectionBottom) {
         $(".anchor-btn").removeClass("active");
         let activeTab = $('.anchor-btn[data-target="' + sectionId + '"]');
         activeTab.addClass("active");
         scrollToTab(activeTab);
+        isActiveSet = true;
       }
     });
+    if (!isActiveSet) {
+      $(".anchor-btn").removeClass("active");
+    }
   }
   
   // place the active tab on the center of navbar
