@@ -23,22 +23,15 @@ $(document).ready(function () {
     $(".toTopBtn").on('click', function () {
       goPageTop();
     });
-  
-    // 導到活動規則並打開
-    $(".rule-btn").on("click", function () {
-        let ruleName = $(this).data("rulename"); // 規則tab
-        let aimSection =  $(".rules-section");  // 要顯示的section
-        scrollAndOpenRule(ruleName,aimSection,headerHeight);
-    });
-  
-      // scroll function
+
+    // scroll function
       $(window).scroll(function () {
-        console.log("???")
         setActiveTab(headerHeight);
     });
   
   });
   
+  // 防止錨點滾到一半卡住
   $(window).on('load', function() {
     adjustScrollPositionForHash();
   });
@@ -82,7 +75,6 @@ $(document).ready(function () {
       if (scrollPosition >= sectionTop - screenHeight1On3 && scrollPosition < sectionBottom) {
         $(".anchor_btn").removeClass("active");
         let activeTab = $('.anchor_btn[data-target="' + sectionId + '"]');
-        console.log('activetab',activeTab);
         activeTab.addClass("active");
         scrollToTab(activeTab);
         isActiveSet = true;
@@ -93,7 +85,7 @@ $(document).ready(function () {
     }
   }
   
-  // place the active tab on the center of navbar
+  // place the active tab on the center of navbar 活動頁導覽列置中設定
   function scrollToTab(tab) {
     let tabOffset = tab.offset().left;
     let tabWidth = tab.outerWidth();
@@ -110,22 +102,22 @@ $(document).ready(function () {
     );
   }
   
-  // 滾動到活動規則並打開指定tab
-  function scrollAndOpenRule(ruleName,aimSection,headerHeight) {
-    $(".nav-link").removeClass("active").each(function () {
-      if (this.id === ruleName) {
-        $(this).addClass("active");
-      }
-    });
-  
-    // Change active state of the tab contents
-    $(".tab-pane").removeClass("active show").each(function () {
-      if ($(this).attr("aria-labelledby") === ruleName) {
-        $(this).addClass("active show");
-      }
-    });
-  
-    // scroll to the rule section
-    let rulePosition = aimSection.offset().top - headerHeight;
-    $("html, body").animate({ scrollTop: rulePosition }, 100, "swing");
-  }
+  // 點選顯示相對應內容
+  $('.rule_tab').on('click',function() {
+    let targetRule = $(this).data("targetRule");
+    togglePanel(targetRule);
+  })
+  // 點選顯示相對應內容
+  function togglePanel (targetRule) {
+      $(".rule_tab").removeClass("active").each(function () {
+        if (
+        $(this).data("targetRule") === targetRule) {
+          $(this).addClass("active");
+        }
+      });
+      $(".rule_content_box .content-panel").removeClass("is-show").each(function () {
+        if ( $(this).data("ruleName") === targetRule) {
+          $(this).addClass("is-show");
+        }
+      });;
+  } 

@@ -1,4 +1,14 @@
+* {
 
+    font-family: "Overpass", sans-serif;
+
+    font-optical-sizing: auto;
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
 header.header-top {
     background: #ffffff;
     z-index: 99;
@@ -27,6 +37,7 @@ header {
 
         > ul {
             margin: 4px auto;
+            padding: 0;
         }
 
         .main-nav-tab {
@@ -47,7 +58,7 @@ header {
                 transition: linear .1s;
                 align-items: center;
                 position: relative;
-                padding: 0 1rem;
+                padding: 0.5rem 1rem 0 1rem;
                 &::after {
                     content: '';
                     width: calc(100% + 2rem);
@@ -61,11 +72,11 @@ header {
 
             &.active {
                 .nav-txt {
-                    color: lightseagreen;
-                    transition: linear .1s;
+                    color: rgb(109, 255, 51);
+                    background-color: rgb(18, 26, 25);
                     &::after {
                         height: 3px;
-                        background-color: lightseagreen;
+                        background-color: rgb(18, 26, 25);
                     }
                 }
                 &::after {
@@ -81,5 +92,52 @@ header {
                 }
             }
         }
+    }
+}
+
+// 規則
+.rules-section {
+    border: 1px solid rgb(62, 147, 196);
+    .rule_tab_list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        li {
+            padding: .25rem .5rem;
+            border: 1px solid black;
+            margin: 0 8px;
+            &.active {
+                background-color: navy;
+                color: antiquewhite;
+            }
+        }
+    }
+    .content-panel {
+        display: none;
+        &.is-show {
+            display: block;
+            animation: fadeIn .4s linear;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.fixed_bar {
+    position: fixed;
+    right: 0;
+    top: 10%;
+    background-color: #000;
+    .rule_tab {
+        color: #fff;
+        list-style: none;
+        padding: 8px 12px;
     }
 }
