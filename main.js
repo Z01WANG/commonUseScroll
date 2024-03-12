@@ -8,7 +8,7 @@ $(document).ready(function () {
     // 點擊tab後滾動到相對應位置   
     $(".anchor_btn").on("click", function (event) {
       event.preventDefault();
-      let marginSpace = 32;
+      let marginSpace = 0;
       let targetId = $(this).data("target");
       let targetSection = $("#" + targetId);
       if (targetSection.length) {
@@ -77,7 +77,9 @@ $(document).ready(function () {
       let sectionId = $(this).attr("id");
       let sectionBottom = sectionTop + $(this).outerHeight(); // 超過section就移除
 
-      if (scrollPosition >= sectionTop - 80 && scrollPosition < sectionBottom) {
+      let screenHeight1On3 = window.screen.height/6; //  畫面高的6分之1
+      
+      if (scrollPosition >= sectionTop - screenHeight1On3 && scrollPosition < sectionBottom) {
         $(".anchor_btn").removeClass("active");
         let activeTab = $('.anchor_btn[data-target="' + sectionId + '"]');
         console.log('activetab',activeTab);
