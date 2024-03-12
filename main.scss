@@ -38,6 +38,8 @@ header {
         > ul {
             margin: 4px auto;
             padding: 0;
+            width: fit-content;
+            max-width: 100%;
         }
 
         .main-nav-tab {
